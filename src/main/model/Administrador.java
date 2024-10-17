@@ -1,4 +1,6 @@
+package main.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador {
@@ -8,11 +10,11 @@ public class Administrador {
     private List<Autor> autores;
     private List<Livro> livros;
 
-    public Administrador(String nome, String senhaAcesso, List<Autor> autores, List<Livro> livros) {
+    public Administrador(String nome, String senhaAcesso) {
         this.nome = nome;
         this.senhaAcesso = senhaAcesso;
-        this.autores = autores;
-        this.livros = livros;
+        this.autores = new ArrayList<>();
+        this.livros = new ArrayList<>();
     }
 
     public String getNome() {
@@ -25,6 +27,10 @@ public class Administrador {
 
     public String getSenhaAcesso() {
         return senhaAcesso;
+    }
+
+    public void setSenhaAcesso(String senhaAcesso) {
+        this.senhaAcesso = senhaAcesso;
     }
 
     public List<Autor> getAutores() {
@@ -43,37 +49,25 @@ public class Administrador {
         this.livros = livros;
     }
 
-    public void setSenhaAcesso(String senhaAcesso) {
-        this.senhaAcesso = senhaAcesso;
-    }
-
     public void adicionarAutor(String autorNome) {
-        Autor autor = new Autor(autorNome, List.of(), "", "");
+        Autor autor = new Autor(autorNome, new ArrayList<>(), "", "");
         this.autores.add(autor);
     }
 
+    public void removerAutor(String autorNome) {
+
+    }
+
     public void adicionarLivro(String livroNome, boolean disponibilidade) {
-        Livro livro = new Livro(livroNome, List.of(), "", "", disponibilidade);
+        Livro livro = new Livro(livroNome, new ArrayList<>(), "", "", disponibilidade);
         this.livros.add(livro);
     }
 
-    public void removerAutor(String autor) {
-
-    }
-
-    public void removerLivro(String livro) {
+    public void removerLivro(String livroNome) {
 
     }
 
     public static void main(String[] args) {
-        Administrador administrador = new Administrador("Lucas", "Lucas123",
-                List.of(new Autor("Monteiro Lobato", List.of(), "", "")),
-                List.of(new Livro("Sítio do Pica-pau Amarelo", List.of(), "", "", true)));
-
-        //administrador.adicionarAutor("Monteiro Lobato");
-        //administrador.adicionarLivro("Sítio do Pica-pau Amarelo", true);
-        System.out.println(administrador.getNome());
-        System.out.println(administrador.getAutores());
-        System.out.println(administrador.getLivros());
+        Administrador admin = new Administrador("Admin", "senha123");
     }
 }

@@ -1,29 +1,30 @@
+package main.model;
 
 import java.util.List;
 import java.util.Map;
 
 public class Livro {
 
-    private String id;
+    private String nome;
     private List<String> listaGenero;
     private String descricao;
     private String autor;
     private boolean disponibilidade;
 
-    public Livro(String id, List<String> listaGenero, String descricao, String autor, boolean disponibilidade) {
-        this.id = id;
+    public Livro(String nome, List<String> listaGenero, String descricao, String autor, boolean disponibilidade) {
+        this.nome = nome;
         this.listaGenero = listaGenero;
         this.descricao = descricao;
         this.autor = autor;
         this.disponibilidade = disponibilidade;
     }
 
-    public String getId() {
-        return id;
+    public String getNome() {
+        return nome;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<String> getListaGenero() {
@@ -69,7 +70,7 @@ public class Livro {
 
     public Map<String, String> obterInformacoes() {
         return Map.of(
-                "\nid", id,
+                "\nnome", nome,
                 "\nlistaGenero", listaGenero.toString(),
                 "\ndescricao", descricao,
                 "\nautor", autor,
