@@ -3,57 +3,64 @@ package main.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Usuário {
+public class Usuario {
 
     private String nome;
-    private String senha;
+    private String cpf = null;
+    private int limiteAcesso;
     private List<String> generos;
-    private List<String> biblioteca;
+    private List<Livro> biblioteca;
 
-    public Usuário(String nome, String senha) {
+    public Usuario(String nome, String cpf, int limiteAcesso) {
         this.nome = nome;
-        this.senha = senha;
-        this.generos = new ArrayList<>();
-        this.biblioteca = new ArrayList<>();
-    }
-
-    public boolean fazerLogin(String nome, String senha) {
-        return this.nome.equals(nome) && this.senha.equals(senha);
-    }
-
-    public void adicionarLivro(String livro) {
-        biblioteca.add(livro);
-    }
-
-    public void removerLivro(String livro) {
-        biblioteca.remove(livro);
-    }
-
-    public void adicionarGenero(String genero) {
-        generos.add(genero);
-    }
-
-    public void removerGenero(String genero) {
-        generos.remove(genero);
-    }
-
-    public List<String> listarGeneros() {
-        return new ArrayList<>(generos);
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.cpf = cpf;
+        this.limiteAcesso = limiteAcesso;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getCpf() {
+        return cpf;
     }
+
+    public void setCpf(String cpf) {
+        //Validar o CPF
+        this.cpf = cpf;
+    }
+
+    public int getLimiteAcesso() {
+        return limiteAcesso;
+    }
+
+    public void setLimiteAcesso(int limiteAcesso) {
+        this.limiteAcesso = limiteAcesso;
+    }
+
+    public List<String> getGeneros() {
+        return generos;
+    }
+
+    public void setGeneros(List<String> generos) {
+        this.generos = generos;
+    }
+
+    public List<Livro> getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void addLivro(Livro livro) {
+        if (this.biblioteca == null) {
+            this.biblioteca = new ArrayList<Livro>();
+        }
+        if (livro != null) {
+            this.biblioteca.add(livro);
+        }
+    }
+
 }

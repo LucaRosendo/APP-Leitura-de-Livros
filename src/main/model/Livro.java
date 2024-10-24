@@ -1,5 +1,6 @@
 package main.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ public class Livro {
     private String nome;
     private List<String> listaGenero;
     private String descricao;
-    private String autor;
+    private Autor autor;
     private boolean disponibilidade;
 
     public Livro(String nome, List<String> listaGenero, String descricao, String autor, boolean disponibilidade) {
@@ -60,27 +61,25 @@ public class Livro {
     }
 
     public void lerLivro() {
-        // Implementação do método para ler o livro
     }
 
     public boolean disponibilidadeAssinatura() {
-        // Implementação do método para verificar a disponibilidade da assinatura
         return disponibilidade;
     }
 
     public Map<String, String> obterInformacoes() {
         return Map.of(
-                "\nnome", nome,
-                "\nlistaGenero", listaGenero.toString(),
-                "\ndescricao", descricao,
-                "\nautor", autor,
-                "\ndisponibilidade", String.valueOf(disponibilidade)
+                "\nnome ", nome,
+                "\nlistaGenero ", listaGenero.toString(),
+                "\ndescricao ", descricao,
+                "\nautor ", autor,
+                "\ndisponibilidade ", String.valueOf(disponibilidade)
         );
     }
 
     public static void main(String[] args) {
         Livro livro = new Livro("Livro 1",
-                List.of("Ficção Científica", "Aventura"),
+                List.of("Ficção Científica", "Aventura", "Free"),
                 "Descrição do livro",
                 "J.K. Rowling",
                 true);

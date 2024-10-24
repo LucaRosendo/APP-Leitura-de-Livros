@@ -1,50 +1,66 @@
 package main.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Assinatura {
 
-    private int limiteAcesso;
+    private String contrato = null;
+    private Usuario titular = null; // Usuário responsável pelo contrato
+    private TipoAssinatura tipoAssinatura;
+    private ArrayList<Usuario> usuarios = null;
     private List<String> beneficios;
-    private boolean status;
+    private boolean status; //Assinatura ativa ou não
 
-    public Assinatura(int limiteAcesso, List<String> beneficios, boolean status) {
-        this.limiteAcesso = limiteAcesso;
-        this.beneficios = beneficios;
+    private static final int MAX_ACESSO_CONTA = 100;
+    private static final int MAX_ACESSO_GRATIS = 50;
+
+    public enum TipoAssinatura {
+        FREE, VIP, COLABORADOR
+    }
+
+    public Assinatura(String contrato, String nome, String cpf, TipoAssinatura tipoAssinatura, boolean status) {
+        this.contrato = contrato;
+        this.setUsuario(nome, cpf);
+        this.tipoAssinatura = tipoAssinatura;
         this.status = status;
     }
 
-    public void iniciarSistema() {
-        // Implementação do método para iniciar o sistema
+    public String getContrato() {
+        return contrato;
     }
 
-    public boolean verificaAcesso() {
-        // Implementação do método para verificar acesso
-        return status && limiteAcesso > 0;
+    public void setContrato(String contrato) {
+        this.contrato = contrato;
     }
 
-    public List<String> listaBeneficio() {
-        // Implementação do método para listar benefícios
-        return beneficios;
+    public Usuario getTitular() {
+        return this.titular;
     }
 
-    public void atualizarAssinatura(int novoLimiteAcesso, List<String> novosBeneficios, boolean novoStatus) {
-        this.limiteAcesso = novoLimiteAcesso;
-        this.beneficios = novosBeneficios;
-        this.status = novoStatus;
+    public Usuario getUsuario() {
+        return this.titular;
     }
 
-    public void cancelarAssinatura() {
-        this.status = false;
+    public void setUsuario(String nome, String cpf) {
+        this.titular = new Usuario(nome, cpf, MAX_ACESSO_CONTA);
+        this.usuarios.add(this.titular);
     }
 
-    // Getters e Setters
-    public int getLimiteAcesso() {
-        return limiteAcesso;
+    public TipoAssinatura getTipoAssinatura() {
+        return tipoAssinatura;
     }
 
-    public void setLimiteAcesso(int limiteAcesso) {
-        this.limiteAcesso = limiteAcesso;
+    public void setTipoAssinatura(TipoAssinatura tipoAssinatura) {
+        this.tipoAssinatura = tipoAssinatura;
+    }
+
+    public ArrayList<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(ArrayList<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 
     public List<String> getBeneficios() {
@@ -62,4 +78,13 @@ public class Assinatura {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public static int getMaxAcessoConta() {
+        return MAX_ACESSO_CONTA;
+    }
+
+    public static int getMaxAcessoGratis() {
+        return MAX_ACESSO_GRATIS;
+    }
+
 }

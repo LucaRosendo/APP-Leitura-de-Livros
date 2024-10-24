@@ -69,5 +69,12 @@ public class Administrador {
 
     public static void main(String[] args) {
         Administrador admin = new Administrador("Admin", "senha123");
+
+        Autor autores = new Autor("Monteiro Lobato", new ArrayList<>(), "Primeio autor", "5");
+        Livro livros = new Livro("Sítio do picapau amarelo", List.of("Ficção Científica", "Aventura"), "Primeiro Livro", "Monteiro LObato", true);
+
+        System.out.println(admin.getNome());
+        System.out.println(autores.getNome());
+        System.out.println(livros.getNome());
     }
 }
