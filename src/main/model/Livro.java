@@ -9,14 +9,16 @@ public class Livro {
     private List<String> listaGenero;
     private String descricao;
     private Autor autor;
+    private final int numeroPaginas;
     private boolean disponibilidade;
     private final Status status;
 
-    public Livro(String nome, List<String> listaGenero, String descricao, Autor autor, boolean disponibilidade, Status status) {
+    public Livro(String nome, List<String> listaGenero, String descricao, Autor autor, int numeroPaginas, boolean disponibilidade, Status status) {
         this.nome = nome;
         this.listaGenero = listaGenero;
         this.descricao = descricao;
         this.autor = autor;
+        this.numeroPaginas = numeroPaginas;
         this.disponibilidade = disponibilidade;
         this.status = status;
     }
@@ -57,6 +59,10 @@ public class Livro {
         this.autor = autor;
     }
 
+    public int getNumeroPaginas() {
+        return numeroPaginas;
+    }
+
     public boolean isDisponibilidade() {
         return disponibilidade;
     }
@@ -65,10 +71,9 @@ public class Livro {
         this.disponibilidade = disponibilidade;
     }
 
-    public void lerLivro(int tempoLeitura) {
+    public void lerLivro(int tempoLeitura, int paginasLidas) {
         status.registrarTempo(this.nome, tempoLeitura);
-        System.out.println("Lendo o livro: " + this.nome);
-        System.out.println("Tempo de leitura registrado: " + tempoLeitura + " minutos.");
+        status.registrarPaginasLidas(paginasLidas);
     }
 
     public boolean disponibilidadeAssinatura() {
@@ -81,15 +86,17 @@ public class Livro {
                 "\nlistaGenero ", listaGenero.toString(),
                 "\ndescricao ", descricao,
                 "\nautor ", autor,
-                "\ndisponibilidade ", String.valueOf(disponibilidade)
+                "\nnumeroPaginas ", String.valueOf(numeroPaginas),
+                "\ndisponibilidade ", String.valueOf(disponibilidade),
+                "\nstatus ", status.obterEstatisticas()
         );
     }
 
     public static void main(String[] args) {
         Autor autor = new Autor("J.K. Rowling", List.of("Harry Potter e a Pedra Filosofal", "Harry Potter e a Câmara Secreta"), "Escritora britânica", "5 estrelas");
-        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Harry Potter e a Pedra Filosofal é o primeiro livro da série Harry Potter de J.K. Rowling.", autor, true, new Status());
+        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Harry Potter e a Pedra Filosofal é o primeiro livro da série Harry Potter de J.K. Rowling.", autor, 40, true, new Status());
 
-        livro.lerLivro(60);
+        livro.lerLivro(60, 10);
         System.out.println(livro.obterInformacoes());
     }
 }
