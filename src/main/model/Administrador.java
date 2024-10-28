@@ -59,7 +59,7 @@ public class Administrador {
     }
 
     public void adicionarLivro(String livroNome, boolean disponibilidade) {
-        Livro livro = new Livro(livroNome, new ArrayList<>(), "", null, disponibilidade, new Status());
+        Livro livro = new Livro(livroNome, new ArrayList<>(), "", null, 0, disponibilidade, new Status());
         this.livros.add(livro);
     }
 
@@ -72,7 +72,7 @@ public class Administrador {
 
         Autor autores = new Autor("Monteiro Lobato", new ArrayList<>(), "Primeio autor", "5");
         admin.adicionarAutor(autores.getNome());
-        Livro livro = new Livro("Reinações de Narizinho", new ArrayList<>(), "Primeiro livro", autores, true, new Status());
+        Livro livro = new Livro("Reinações de Narizinho", new ArrayList<>(), "Primeiro livro", autores, 40, true, new Status());
 
         System.out.println(admin.getNome());
         System.out.println(autores.getNome());
