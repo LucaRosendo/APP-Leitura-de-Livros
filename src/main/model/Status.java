@@ -8,7 +8,7 @@ public class Status {
 
     private int dataPublicacao;
     private List<String> obrasMaisLidas;
-    private int tempoLeitura;
+    private final Map<String, Integer> tempoLeituraPorLivro;
 
     public void definirDataPublicacao(int dataPublicacao) {
         this.dataPublicacao = dataPublicacao;
@@ -18,16 +18,20 @@ public class Status {
         this.obrasMaisLidas.add(obra);
     }
 
-    public int registrarTempo(int tempo) {
-        this.tempoLeitura += tempo;
-        return this.tempoLeitura;
+    public Status() {
+        this.tempoLeituraPorLivro = new HashMap<>();
+    }
+
+    public void registrarTempo(String livroNome, int tempo) {
+        this.tempoLeituraPorLivro.put(livroNome,
+                this.tempoLeituraPorLivro.getOrDefault(livroNome, 0) + tempo);
     }
 
     public Map<String, Object> obterEstatisticas() {
         Map<String, Object> estatisticas = new HashMap<>();
         estatisticas.put("DataPublicacao", this.dataPublicacao);
         estatisticas.put("ObrasMaisLidas", this.obrasMaisLidas);
-        estatisticas.put("TempoLeitura", this.tempoLeitura);
+        estatisticas.put("TempoLeituraPorLivro", this.tempoLeituraPorLivro);
         return estatisticas;
     }
 }

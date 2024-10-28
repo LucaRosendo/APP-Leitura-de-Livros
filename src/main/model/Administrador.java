@@ -55,26 +55,27 @@ public class Administrador {
     }
 
     public void removerAutor(String autorNome) {
-
+        this.autores.removeIf(autor -> autor.getNome().equals(autorNome));
     }
 
     public void adicionarLivro(String livroNome, boolean disponibilidade) {
-        Livro livro = new Livro(livroNome, new ArrayList<>(), "", "", disponibilidade);
+        Livro livro = new Livro(livroNome, new ArrayList<>(), "", null, disponibilidade);
         this.livros.add(livro);
     }
 
     public void removerLivro(String livroNome) {
-
+        this.livros.removeIf(livro -> livro.getNome().equals(livroNome));
     }
 
     public static void main(String[] args) {
         Administrador admin = new Administrador("Admin", "senha123");
 
         Autor autores = new Autor("Monteiro Lobato", new ArrayList<>(), "Primeio autor", "5");
-        Livro livros = new Livro("Sítio do picapau amarelo", List.of("Ficção Científica", "Aventura"), "Primeiro Livro", "Monteiro LObato", true);
+        admin.adicionarAutor(autores.getNome());
+        Livro livro = new Livro("Reinações de Narizinho", new ArrayList<>(), "Primeiro livro", autores, true);
 
         System.out.println(admin.getNome());
         System.out.println(autores.getNome());
-        System.out.println(livros.getNome());
+        System.out.println(livro.getNome());
     }
 }

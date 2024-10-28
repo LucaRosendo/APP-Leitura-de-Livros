@@ -6,11 +6,11 @@ import java.util.List;
 public class Assinatura {
 
     private String contrato = null;
-    private Usuario titular = null; // Usuário responsável pelo contrato
+    private final Usuario titular;
     private TipoAssinatura tipoAssinatura;
     private ArrayList<Usuario> usuarios = null;
     private List<String> beneficios;
-    private boolean status; //Assinatura ativa ou não
+    private boolean status;
 
     private static final int MAX_ACESSO_CONTA = 100;
     private static final int MAX_ACESSO_GRATIS = 50;
@@ -21,7 +21,7 @@ public class Assinatura {
 
     public Assinatura(String contrato, String nome, String cpf, TipoAssinatura tipoAssinatura, boolean status) {
         this.contrato = contrato;
-        this.setUsuario(nome, cpf);
+        this.titular = new Usuario(nome, cpf, MAX_ACESSO_CONTA);
         this.tipoAssinatura = tipoAssinatura;
         this.status = status;
     }
@@ -43,7 +43,7 @@ public class Assinatura {
     }
 
     public void setUsuario(String nome, String cpf) {
-        this.titular = new Usuario(nome, cpf, MAX_ACESSO_CONTA);
+        this.titular.setNome(nome);
         this.usuarios.add(this.titular);
     }
 

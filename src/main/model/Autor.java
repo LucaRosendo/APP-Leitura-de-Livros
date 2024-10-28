@@ -5,8 +5,8 @@ import java.util.List;
 public class Autor {
 
     private String nome;
-    private List<String> publicacoes;
-    private String descricao;
+    private final List<String> publicacoes;
+    private final String descricao;
     private String avaliacaoAutor;
 
     public Autor(String nome, List<String> publicacoes, String descricao, String avaliacaoAutor) {
@@ -38,6 +38,10 @@ public class Autor {
 
     public String getNome() {
         return this.nome;
+    }
+
+    public String getDescricao() {
+        return this.descricao;
     }
 
     public static void main(String[] args) {
