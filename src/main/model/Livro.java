@@ -10,13 +10,15 @@ public class Livro {
     private String descricao;
     private Autor autor;
     private boolean disponibilidade;
+    private final Status status;
 
-    public Livro(String nome, List<String> listaGenero, String descricao, Autor autor, boolean disponibilidade) {
+    public Livro(String nome, List<String> listaGenero, String descricao, Autor autor, boolean disponibilidade, Status status) {
         this.nome = nome;
         this.listaGenero = listaGenero;
         this.descricao = descricao;
         this.autor = autor;
         this.disponibilidade = disponibilidade;
+        this.status = status;
     }
 
     public String getNome() {
@@ -63,7 +65,10 @@ public class Livro {
         this.disponibilidade = disponibilidade;
     }
 
-    public void lerLivro() {
+    public void lerLivro(int tempoLeitura) {
+        status.registrarTempo(this.nome, tempoLeitura);
+        System.out.println("Lendo o livro: " + this.nome);
+        System.out.println("Tempo de leitura registrado: " + tempoLeitura + " minutos.");
     }
 
     public boolean disponibilidadeAssinatura() {
@@ -82,8 +87,9 @@ public class Livro {
 
     public static void main(String[] args) {
         Autor autor = new Autor("J.K. Rowling", List.of("Harry Potter e a Pedra Filosofal", "Harry Potter e a Câmara Secreta"), "Escritora britânica", "5 estrelas");
-        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Harry Potter e a Pedra Filosofal é o primeiro livro da série Harry Potter de J.K. Rowling.", autor, true);
+        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Harry Potter e a Pedra Filosofal é o primeiro livro da série Harry Potter de J.K. Rowling.", autor, true, new Status());
 
+        livro.lerLivro(60);
         System.out.println(livro.obterInformacoes());
     }
 }

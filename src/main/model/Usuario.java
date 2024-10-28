@@ -6,7 +6,7 @@ import java.util.List;
 public class Usuario {
 
     private String nome;
-    private String cpf = null;
+    private String cpf;
     private int limiteAcesso;
     private List<String> generos;
     private List<Livro> biblioteca;
@@ -29,9 +29,19 @@ public class Usuario {
         return cpf;
     }
 
+    public boolean validacaoCPF(String cpf) {
+        if (cpf == null) {
+            return false;
+        }
+        return cpf.length() == 11;
+    }
+
     public void setCpf(String cpf) {
-        //Validar o CPF
-        this.cpf = cpf;
+        if (validacaoCPF(cpf)) {
+            this.cpf = cpf;
+        } else {
+            throw new IllegalArgumentException("CPF inválido");
+        }
     }
 
     public int getLimiteAcesso() {
