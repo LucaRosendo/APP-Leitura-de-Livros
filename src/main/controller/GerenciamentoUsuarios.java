@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import main.model.Assinatura;
 
 public class GerenciamentoUsuarios {
-    private ArrayList<Assinatura> assinaturas = new ArrayList<>();
+
+    private final ArrayList<Assinatura> assinaturas = new ArrayList<>();
 
     public void adicionarAssinatura(Assinatura assinatura) {
         assinaturas.add(assinatura);
