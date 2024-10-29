@@ -31,10 +31,6 @@ public class Livro {
         this.nome = nome;
     }
 
-    public List<String> getListaGenero() {
-        return listaGenero;
-    }
-
     public void setListaGenero(List<String> listaGenero) {
         if (this.listaGenero != null) {
             this.listaGenero.addAll(listaGenero);
@@ -61,6 +57,14 @@ public class Livro {
 
     public int getNumeroPaginas() {
         return numeroPaginas;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public List<String> getListaGenero() {
+        return listaGenero;
     }
 
     public boolean isDisponibilidade() {
