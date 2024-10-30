@@ -106,65 +106,81 @@ public class Main {
                 boolean exit = false;
 
                 while (!exit) {
-                        System.out.println("===========MENU PRINCIPAL=============");
+                        System.out.println("=============MENU PRINCIPAL=============");
                         System.out.println("1. Adicionar");
                         System.out.println("2. Atualizar");
                         System.out.println("3. Remover");
                         System.out.println("4. Listar");
                         System.out.println("5. Buscar");
                         System.out.println("6. Sair");
-                        System.out.println("======================================");
+                        System.out.println("========================================");
                         System.out.print("Escolha uma opção: \n");
                         int mainOption = scanner.nextInt();
                         scanner.nextLine(); 
 
                         switch (mainOption) {
                                 case 1:
-                                        System.out.println("MENU ADICIONAR");
-                                        System.out.println("1. Autor");
-                                        System.out.println("2. Usuario");
-                                        System.out.println("3. Livro");
-                                        System.out.print("Escolha uma opção: ");
-                                        int addOption = scanner.nextInt();
-                                        scanner.nextLine(); 
-                                        // Implementar lógica para adicionar Autor, Usuario ou Livro
-                                        break;
+                                        while(!exit){
+                                                System.out.println("=============MENU ADICIONAR=============");
+                                                System.out.println("1. Autor");
+                                                System.out.println("2. Usuario");
+                                                System.out.println("3. Livro");
+                                                System.out.println("========================================");
+                                                System.out.print("Escolha uma opção: \n");
+                                                int addOption = scanner.nextInt();
+                                                scanner.nextLine(); 
+
+
+                                                switch(addOption){
+                                                        case 1: 
+                                                                System.out.println("Digite o nome do autor: ");
+                                                                String autorNome = scanner.nextLine();
+                                                                gerenciamentoAutores.adicionarAutor(new Autor(autorNome, new ArrayList<>(), "", ""));
+                                                                
+                                                                break;
+                                                }
+                                       }
+                                                        break;
                                 case 2:
-                                        System.out.println("MENU ATUALIZAR");
+                                        System.out.println("=============MENU ATUALIZAR=============");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
-                                        System.out.print("Escolha uma opção: ");
+                                        System.out.println("========================================");
+                                        System.out.print("Escolha uma opção: \n");
                                         int updateOption = scanner.nextInt();
                                         scanner.nextLine(); 
                                         // Implementar lógica para atualizar Autor, Usuario ou Livro
                                         break;
                                 case 3:
-                                        System.out.println("MENU REMOVER");
+                                        System.out.println("=============MENU REMOVER=============");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
-                                        System.out.print("Escolha uma opção: ");
+                                        System.out.println("========================================");
+                                        System.out.print("Escolha uma opção: \n");
                                         int removeOption = scanner.nextInt();
                                         scanner.nextLine(); 
                                         // Implementar lógica para remover Autor, Usuario ou Livro
                                         break;
                                 case 4:
-                                        System.out.println("MENU LISTAR");
+                                        System.out.println("=============MENU LISTAR=============");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
-                                        System.out.print("Escolha uma opção: ");
+                                        System.out.println("========================================");
+                                        System.out.print("Escolha uma opção: \n");
                                         int listOption = scanner.nextInt();
                                         scanner.nextLine(); 
                                         // Implementar lógica para listar Autor, Usuario ou Livro
                                         break;
                                 case 5:
-                                        System.out.println("MENU BUSCAR");
+                                        System.out.println("=============MENU BUSCAR=============");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
-                                        System.out.print("Escolha uma opção: ");
+                                        System.out.println("========================================");
+                                        System.out.print("Escolha uma opção: \n");
                                         int searchOption = scanner.nextInt();
                                         scanner.nextLine(); 
                                         // Implementar lógica para buscar Autor, Usuario ou Livro
