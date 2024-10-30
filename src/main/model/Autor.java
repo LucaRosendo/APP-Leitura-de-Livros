@@ -24,10 +24,6 @@ public class Autor{
         this.nome = nome;
     }
 
-    public List<String> getPublicacoes() {
-        return publicacoes;
-    }
-
     public void setPublicacoes(List<String> publicacoes) {
         this.publicacoes = publicacoes;
     }
@@ -51,7 +47,13 @@ public class Autor{
     public void adicionarPublicacao(String livro) {
         if (publicacoes.contains(livro)) {
             throw new IllegalArgumentException("\nLivro já existente: " + livro);
+        }else{
+            System.out.println("\nLivro adicionado: " + livro);
+            publicacoes.add(livro);
         }
-        publicacoes.add(livro);
+    }
+
+    public List<String> getPublicacoes() {
+        return publicacoes;
     }
 }
