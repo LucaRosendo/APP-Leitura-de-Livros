@@ -47,6 +47,14 @@ public class Livro {
         this.descricao = descricao;
     }
 
+    public String getGenero() {
+        return String.join(", ", listaGenero);
+    }
+
+    public void setGenero(List<String> listaGenero) {
+        this.listaGenero = listaGenero;
+    }
+
     public Autor getAutor() {
         return autor;
     }
@@ -94,13 +102,5 @@ public class Livro {
                 "\ndisponibilidade ", String.valueOf(disponibilidade),
                 "\nstatus ", status.obterEstatisticas()
         );
-    }
-
-    public static void main(String[] args) {
-        Autor autor = new Autor("J.K. Rowling", List.of("Harry Potter e a Pedra Filosofal", "Harry Potter e a Câmara Secreta"), "Escritora britânica", "5 estrelas");
-        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Harry Potter e a Pedra Filosofal é o primeiro livro da série Harry Potter de J.K. Rowling.", autor, 40, true, new Status());
-
-        livro.lerLivro(60, 10);
-        System.out.println(livro.obterInformacoes());
     }
 }

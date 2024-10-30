@@ -66,16 +66,4 @@ public class Administrador {
     public void removerLivro(String livroNome) {
         this.livros.removeIf(livro -> livro.getNome().equals(livroNome));
     }
-
-    public static void main(String[] args) {
-        Administrador admin = new Administrador("Admin", "senha123");
-
-        Autor autores = new Autor("Monteiro Lobato", new ArrayList<>(), "Primeio autor", "5");
-        admin.adicionarAutor(autores.getNome());
-        Livro livro = new Livro("Reinações de Narizinho", new ArrayList<>(), "Primeiro livro", autores, 40, true, new Status());
-
-        System.out.println(admin.getNome());
-        System.out.println(autores.getNome());
-        System.out.println(livro.getNome());
-    }
 }

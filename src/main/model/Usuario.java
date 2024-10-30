@@ -7,14 +7,22 @@ public class Usuario {
 
     private String nome;
     private String cpf;
-    private int limiteAcesso;
     private List<String> generos;
     private List<Livro> biblioteca;
+    private int limiteAcesso;
+    private String tipoAssinatura;
 
-    public Usuario(String nome, String cpf, int limiteAcesso) {
+    public Usuario(String nome, String cpf, String tipoAssinatura) {
         this.nome = nome;
         this.cpf = cpf;
-        this.limiteAcesso = limiteAcesso;
+        this.tipoAssinatura = tipoAssinatura;
+        if (tipoAssinatura.equals("VIP") || tipoAssinatura.equals("COLABORADOR")) {
+            this.limiteAcesso = Assinatura.getMaxAcessoConta();
+        } else if (tipoAssinatura.equals("FREE")) {
+            this.limiteAcesso = Assinatura.getMaxAcessoGratis();
+        } else {
+            this.limiteAcesso = 0; 
+        }
     }
 
     public String getNome() {
@@ -44,14 +52,6 @@ public class Usuario {
         }
     }
 
-    public int getLimiteAcesso() {
-        return limiteAcesso;
-    }
-
-    public void setLimiteAcesso(int limiteAcesso) {
-        this.limiteAcesso = limiteAcesso;
-    }
-
     public List<String> getGeneros() {
         return generos;
     }
@@ -62,6 +62,22 @@ public class Usuario {
 
     public List<Livro> getBiblioteca() {
         return biblioteca;
+    }
+
+    public String getTipoAssinatura() {
+        return tipoAssinatura;
+    }
+
+    public void setTipoAssinatura(String tipoAssinatura) {
+        this.tipoAssinatura = tipoAssinatura;
+    }
+
+    public int getLimiteAcesso() {
+        return limiteAcesso;
+    }
+
+    public void setLimiteAcesso(int limiteAcesso) {
+        this.limiteAcesso = limiteAcesso;
     }
 
     public void addLivro(Livro livro) {

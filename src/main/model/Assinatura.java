@@ -8,7 +8,7 @@ public class Assinatura {
     private String contrato = null;
     private final Usuario titular;
     private TipoAssinatura tipoAssinatura;
-    private ArrayList<Usuario> usuarios = null;
+    private ArrayList<Usuario> usuarios = new ArrayList<>();
     private List<String> beneficios;
     private boolean status;
 
@@ -21,7 +21,7 @@ public class Assinatura {
 
     public Assinatura(String contrato, String nome, String cpf, TipoAssinatura tipoAssinatura, boolean status) {
         this.contrato = contrato;
-        this.titular = new Usuario(nome, cpf, MAX_ACESSO_CONTA);
+        this.titular = new Usuario(nome, cpf, tipoAssinatura.name()); 
         this.tipoAssinatura = tipoAssinatura;
         this.status = status;
     }
@@ -86,5 +86,4 @@ public class Assinatura {
     public static int getMaxAcessoGratis() {
         return MAX_ACESSO_GRATIS;
     }
-
 }

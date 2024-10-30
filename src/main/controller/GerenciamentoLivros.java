@@ -39,21 +39,4 @@ public class GerenciamentoLivros {
             }
         }
     }
-
-    public static void main(String[] args) {
-        GerenciamentoLivros gerenciamento = new GerenciamentoLivros();
-        Autor autor = new Autor("J.K. Rowling", List.of("Harry Potter e a Pedra Filosofal", "Harry Potter e a Câmara Secreta"), "Escritora britânica", "5 estrelas");
-        Livro livro = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia", "Aventura"), "Primeiro livro da série Harry Potter.", autor, 40, true, new Status());
-
-        gerenciamento.adicionarLivro(livro);
-        gerenciamento.listarLivros();
-
-        Livro encontrado = gerenciamento.buscarLivro("Harry Potter e a Pedra Filosofal");
-        if (encontrado != null) {
-            System.out.println("Livro encontrado: " + encontrado.getDescricao());
-        }
-
-        gerenciamento.removerLivro("Harry Potter e a Pedra Filosofal");
-        gerenciamento.listarLivros();
-    }
 }

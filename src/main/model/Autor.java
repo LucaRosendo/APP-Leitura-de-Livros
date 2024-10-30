@@ -44,12 +44,14 @@ public class Autor{
         this.avaliacaoAutor = avaliacaoAutor;
     }
 
-    public void adicionarPublicacao(String livro) {
-        if (publicacoes.contains(livro)) {
-            throw new IllegalArgumentException("\nLivro já existente: " + livro);
-        }else{
-            System.out.println("\nLivro adicionado: " + livro);
-            publicacoes.add(livro);
+    public void adicionarPublicacao(String titulo) {
+        if (titulo != null && !titulo.isEmpty()) {
+            if (publicacoes.indexOf(titulo)==-1){
+               publicacoes.add(titulo);  
+            } 
+           
+        } else {
+            throw new IllegalArgumentException("Título da publicação não pode ser nulo ou vazio.");
         }
     }
 

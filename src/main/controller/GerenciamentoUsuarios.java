@@ -1,11 +1,26 @@
 package main.controller;
 
+import main.model.Usuario;
+import java.util.List;
 import java.util.ArrayList;
 import main.model.Assinatura;
 
 public class GerenciamentoUsuarios {
 
     private final ArrayList<Assinatura> assinaturas = new ArrayList<>();
+    private List<Usuario> usuarios;
+
+    public GerenciamentoUsuarios() {
+        this.usuarios = new ArrayList<>();
+    }
+
+    public void adicionarUsuario(Usuario usuario) {
+        if (usuarios.stream().anyMatch(u -> u.getNome().equals(usuario.getNome()))) {
+            throw new IllegalArgumentException("Usuário já existente: " + usuario.getNome());
+        }
+        usuarios.add(usuario);
+        System.out.println("Usuário adicionado: " + usuario.getNome());
+    }
 
     public void adicionarAssinatura(Assinatura assinatura) {
         assinaturas.add(assinatura);
@@ -35,23 +50,5 @@ public class GerenciamentoUsuarios {
                 System.out.println(assinatura.getTitular().getNome());
             }
         }
-    }
-
-    public static void main(String[] args) {
-        GerenciamentoUsuarios gerenciamento = new GerenciamentoUsuarios();
-
-        Assinatura.TipoAssinatura tipo = Assinatura.TipoAssinatura.VIP;
-        Assinatura assinatura = new Assinatura("Contrato123", "Lucas", "12345678900", tipo, true);
-
-        gerenciamento.adicionarAssinatura(assinatura);
-        gerenciamento.listarAssinaturas();
-
-        Assinatura encontrada = gerenciamento.buscarAssinatura("Lucas");
-        if (encontrada != null) {
-            System.out.println("Assinatura encontrada: " + encontrada.getTitular().getNome());
-        }
-
-        gerenciamento.removerAssinatura("Lucas");
-        gerenciamento.listarAssinaturas();
     }
 }
