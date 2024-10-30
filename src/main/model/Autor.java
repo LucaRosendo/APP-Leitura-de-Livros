@@ -42,9 +42,13 @@ public class Autor {
 
     public String getDescricao() {
         return this.descricao;
-    }
+        }
 
-    public static void main(String[] args) {
+        public List<String> getLivros() {
+        return this.publicacoes;
+        }
+
+        public static void main(String[] args) {
         Autor autor = new Autor("J.K. Rowling",
                 List.of("Harry Potter e a Pedra Filosofal",
                         "Harry Potter e a Câmara Secreta"),
