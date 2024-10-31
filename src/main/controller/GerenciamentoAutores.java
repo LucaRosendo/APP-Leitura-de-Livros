@@ -12,11 +12,14 @@ public class GerenciamentoAutores {
         }
         autores.add(autor);
         System.out.println("Autor adicionado: " + autor.getNome());
-    }
+        }
 
     public void removerAutor(String nome) {
-        autores.removeIf(a -> a.getNome().equals(nome));
-        System.out.println("Autor removido: " + nome);
+        if (autores.removeIf(a -> a.getNome().equals(nome))) {
+            System.out.println("Autor removido: " + nome);
+        } else {
+            System.out.println("Autor não encontrado: " + nome);
+        }
     }
 
     public Autor buscarAutor(String nome) {

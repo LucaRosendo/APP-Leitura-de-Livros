@@ -26,13 +26,13 @@ public class GerenciamentoLivros {
                 return livro;
             }
         }
-        System.out.println("Livro não encontrado: " + nome);
+        System.out.println("Livro nao encontrado: " + nome);
         return null;
     }
 
     public void listarLivros() {
         if (livros.isEmpty()) {
-            System.out.println("Nenhum livro disponível.");
+            System.out.println("Nenhum livro disponivel.");
         } else {
             for (Livro livro : livros) {
                 System.out.println(livro.getNome());

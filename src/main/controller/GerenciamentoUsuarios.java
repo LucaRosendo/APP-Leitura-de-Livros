@@ -16,10 +16,19 @@ public class GerenciamentoUsuarios {
 
     public void adicionarUsuario(Usuario usuario) {
         if (usuarios.stream().anyMatch(u -> u.getNome().equals(usuario.getNome()))) {
-            throw new IllegalArgumentException("Usuário já existente: " + usuario.getNome());
+            throw new IllegalArgumentException("Usuario ja existente: " + usuario.getNome());
         }
         usuarios.add(usuario);
-        System.out.println("Usuário adicionado: " + usuario.getNome());
+        System.out.println("Usuario adicionado: " + usuario.getNome());
+    }
+
+    public void removerUsuario(String nome) {
+        boolean removed = usuarios.removeIf(u -> u.getNome().equals(nome));
+        if (removed) {
+            System.out.println("Usuario removido: " + nome);
+        } else {
+            System.out.println("Usuario nao encontrado: " + nome);
+        }
     }
 
     public void adicionarAssinatura(Assinatura assinatura) {
@@ -38,13 +47,13 @@ public class GerenciamentoUsuarios {
                 return assinatura;
             }
         }
-        System.out.println("Assinatura não encontrada: " + nome);
+        System.out.println("Assinatura nao encontrada: " + nome);
         return null;
     }
 
     public void listarAssinaturas() {
         if (assinaturas.isEmpty()) {
-            System.out.println("Nenhuma assinatura disponível.");
+            System.out.println("Nenhuma assinatura disponivel.");
         } else {
             for (Assinatura assinatura : assinaturas) {
                 System.out.println(assinatura.getTitular().getNome());

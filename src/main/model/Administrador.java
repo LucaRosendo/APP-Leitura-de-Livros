@@ -3,28 +3,28 @@ package main.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Administrador {
+public class Administrador extends Usuario{
 
-    private String nome;
+ //   private String nome;
     private String senhaAcesso;
     private List<Autor> autores;
     private List<Livro> livros;
 
-    public Administrador(String nome, String senhaAcesso) {
-        this.nome = nome;
-        this.senhaAcesso = senhaAcesso;
+    public Administrador(String nome, String senhaAcesso ) {
+        super(nome ,senhaAcesso,"VIP");
+
         this.autores = new ArrayList<>();
         this.livros = new ArrayList<>();
     }
 
-    public String getNome() {
+ /*   public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+*/
     public String getSenhaAcesso() {
         return senhaAcesso;
     }
