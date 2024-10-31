@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import main.controller.GerenciamentoAutores;
 import main.controller.GerenciamentoLivros;
 import main.controller.GerenciamentoUsuarios;
@@ -7,7 +8,6 @@ import main.model.Autor;
 import main.model.Livro;
 import main.model.Status;
 import main.model.Usuario;
-import java.util.Scanner;
 
 public class Main {
         public static void main(String[] args) {
@@ -41,47 +41,47 @@ public class Main {
 
                 try {
                         Livro livro1 = new Livro("Harry Potter e a Pedra Filosofal", List.of("Fantasia"), "Fantasia",
-                                        gerenciamentoAutores.getAutores().get(0), 1997, true, status);
+                                        gerenciamentoAutores.getAutores().get(0), 1997, true, status, "era uma vez");
                         livros.add(livro1);
                         gerenciamentoAutores.getAutores().get(0).adicionarPublicacao(livro1.getNome());
 
                         Livro livro2 = new Livro("Harry Potter e a Câmara Secreta", List.of("Fantasia"), "Fantasia",
-                                        gerenciamentoAutores.getAutores().get(0), 1998, true, status);
+                                        gerenciamentoAutores.getAutores().get(0), 1998, true, status,"era uma vez");
                         livros.add(livro2);
                         gerenciamentoAutores.getAutores().get(0).adicionarPublicacao(livro2.getNome());
 
                         Livro livro3 = new Livro("Harry Potter e o Prisioneiro de Azkaban", List.of("Fantasia"), "Fantasia",
-                                        gerenciamentoAutores.getAutores().get(0), 1999, true, status);
+                                        gerenciamentoAutores.getAutores().get(0), 1999, true, status,"era uma vez");
                         livros.add(livro3);
                         gerenciamentoAutores.getAutores().get(0).adicionarPublicacao(livro3.getNome());
 
                         Livro livro4 = new Livro("456", List.of("Fantasia"), "Fantasia",
-                                        gerenciamentoAutores.getAutores().get(0), 2000, true, status);
+                                        gerenciamentoAutores.getAutores().get(0), 2000, true, status,"era uma vez");
                         livros.add(livro4);
                         gerenciamentoAutores.getAutores().get(0).adicionarPublicacao(livro4.getNome());
 
                         Livro livro5 = new Livro("O Sítio do Picapau Amarelo", List.of("Infantil"), "Infantil",
-                                        gerenciamentoAutores.getAutores().get(1), 1920, true, status);
+                                        gerenciamentoAutores.getAutores().get(1), 1920, true, status,"era uma vez");
                         livros.add(livro5);
                         gerenciamentoAutores.getAutores().get(1).adicionarPublicacao(livro5.getNome());
 
                         Livro livro6 = new Livro("Reinações de Narizinho", List.of("Infantil"), "Infantil",
-                                        gerenciamentoAutores.getAutores().get(1), 1931, true, status);
+                                        gerenciamentoAutores.getAutores().get(1), 1931, true, status,"era uma vez");
                         livros.add(livro6);
                         gerenciamentoAutores.getAutores().get(1).adicionarPublicacao(livro6.getNome());
 
                         Livro livro7 = new Livro("Caçadas de Pedrinho", List.of("Infantil"), "Infantil",
-                                        gerenciamentoAutores.getAutores().get(1), 1933, true, status);
+                                        gerenciamentoAutores.getAutores().get(1), 1933, true, status, "era ma vez ");
                         livros.add(livro7);
                         gerenciamentoAutores.getAutores().get(1).adicionarPublicacao(livro7.getNome());
 
                         Livro livro8 = new Livro("Dom Casmurro", List.of("Romance"), "Romance",
-                                        gerenciamentoAutores.getAutores().get(2), 1899, true, status);
+                                        gerenciamentoAutores.getAutores().get(2), 1899, true, status,"era uma vez");
                         livros.add(livro8);
                         gerenciamentoAutores.getAutores().get(2).adicionarPublicacao(livro8.getNome());
 
                         Livro livro9 = new Livro("Memórias Póstumas de Brás Cubas", List.of("Romance"), "Romance",
-                                        gerenciamentoAutores.getAutores().get(2), 1881, true, status);
+                                        gerenciamentoAutores.getAutores().get(2), 1881, true, status,"era uma vez");
                         livros.add(livro9);
                         gerenciamentoAutores.getAutores().get(2).adicionarPublicacao(livro9.getNome());
 
@@ -106,7 +106,7 @@ public class Main {
                 boolean exit = false;
 
                 while (!exit) {
-                        System.out.println("=============MENU PRINCIPAL=============");
+                        System.out.println("=============MENU PRINCIPAL  ADMINSTRADOR=============");
                         System.out.println("1. Adicionar");
                         System.out.println("2. Atualizar");
                         System.out.println("3. Remover");
@@ -135,6 +135,7 @@ public class Main {
                                                         case 1: 
                                                                 System.out.println("Digite o nome do autor: ");
                                                                 String autorNome = scanner.nextLine();
+                                                                System.out.println("Digite o nome do : ");
                                                                 gerenciamentoAutores.adicionarAutor(new Autor(autorNome, new ArrayList<>(), "", ""));
                                                                 
                                                                 break;

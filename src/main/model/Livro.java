@@ -12,23 +12,31 @@ public class Livro {
     private final int numeroPaginas;
     private boolean disponibilidade;
     private final Status status;
+    private String conteudo;
 
-    public Livro(String nome, List<String> listaGenero, String descricao, Autor autor, int numeroPaginas, boolean disponibilidade, Status status) {
+    public Livro(String nome,String generolivro, String descricao, Autor autor, int numeroPaginas, boolean disponibilidade, Status status , String conteudo ) {
         this.nome = nome;
-        this.listaGenero = listaGenero;
+     
+        this.listaGenero = List.of(generolivro);
         this.descricao = descricao;
         this.autor = autor;
         this.numeroPaginas = numeroPaginas;
         this.disponibilidade = disponibilidade;
-        this.status = status;
+        this.status = status;  
+        this.conteudo = conteudo;
     }
 
     public String getNome() {
         return nome;
     }
-
+    public String getConteudo(){
+        return conteudo;
+    }
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    public void setConteudo(String conteudo){
+        this.conteudo=conteudo;
     }
 
     public void setListaGenero(List<String> listaGenero) {
