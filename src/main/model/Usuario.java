@@ -16,13 +16,9 @@ public class Usuario {
         this.nome = nome;
         this.cpf = cpf;
         this.tipoAssinatura = tipoAssinatura;
-        if (tipoAssinatura.equals("VIP") || tipoAssinatura.equals("COLABORADOR")) {
-            this.limiteAcesso = Assinatura.getMaxAcessoConta();
-        } else if (tipoAssinatura.equals("FREE")) {
-            this.limiteAcesso = Assinatura.getMaxAcessoGratis();
-        } else {
-            this.limiteAcesso = 0; 
-        }
+
+        this.biblioteca = new ArrayList<>();
+        this.limiteAcesso = definirLimiteAcesso(tipoAssinatura);
     }
 
     public String getNome() {
@@ -30,6 +26,9 @@ public class Usuario {
     }
 
     public void setNome(String nome) {
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new IllegalArgumentException("O nome não pode ser nulo ou vazio.");
+        }
         this.nome = nome;
     }
 
@@ -38,10 +37,7 @@ public class Usuario {
     }
 
     public boolean validacaoCPF(String cpf) {
-        if (cpf == null) {
-            return false;
-        }
-        return cpf.length() == 11;
+        return cpf != null && cpf.length() == 11; 
     }
 
     public void setCpf(String cpf) {
@@ -53,15 +49,18 @@ public class Usuario {
     }
 
     public List<String> getGeneros() {
-        return generos;
+        return generos != null ? new ArrayList<>(generos) : new ArrayList<>();
     }
 
     public void setGeneros(List<String> generos) {
-        this.generos = generos;
+        if (generos == null) {
+            throw new IllegalArgumentException("A lista de gêneros não pode ser nula.");
+        }
+        this.generos = new ArrayList<>(generos); 
     }
 
     public List<Livro> getBiblioteca() {
-        return biblioteca;
+        return new ArrayList<>(biblioteca); 
     }
 
     public String getTipoAssinatura() {
@@ -69,7 +68,11 @@ public class Usuario {
     }
 
     public void setTipoAssinatura(String tipoAssinatura) {
+        if (tipoAssinatura == null || tipoAssinatura.trim().isEmpty()) {
+            throw new IllegalArgumentException("O tipo de assinatura não pode ser nulo ou vazio.");
+        }
         this.tipoAssinatura = tipoAssinatura;
+        this.limiteAcesso = definirLimiteAcesso(tipoAssinatura);
     }
 
     public int getLimiteAcesso() {
@@ -77,15 +80,26 @@ public class Usuario {
     }
 
     public void setLimiteAcesso(int limiteAcesso) {
+        if (limiteAcesso < 0) {
+            throw new IllegalArgumentException("O limite de acesso não pode ser negativo.");
+        }
         this.limiteAcesso = limiteAcesso;
     }
 
     public void addLivro(Livro livro) {
-        if (this.biblioteca == null) {
-            this.biblioteca = new ArrayList<>();
+        if (livro == null) {
+            throw new IllegalArgumentException("O livro não pode ser nulo.");
         }
-        if (livro != null) {
-            this.biblioteca.add(livro);
+        this.biblioteca.add(livro);
+    }
+
+    private int definirLimiteAcesso(String tipoAssinatura) {
+        if ("VIP".equals(tipoAssinatura) || "COLABORADOR".equals(tipoAssinatura)) {
+            return Assinatura.getMaxAcessoConta();
+        } else if ("FREE".equals(tipoAssinatura)) {
+            return Assinatura.getMaxAcessoGratis();
+        } else {
+            return 0; 
         }
     }
 }

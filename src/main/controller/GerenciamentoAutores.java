@@ -1,6 +1,7 @@
 package main.controller;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import main.model.Autor;
 
 public class GerenciamentoAutores {
@@ -19,22 +20,26 @@ public class GerenciamentoAutores {
         System.out.println("Autor removido: " + nome);
     }
 
-    public Autor buscarAutor(String nome) {
-        for (Autor autor : autores) {
-            if (autor.getNome().equals(nome)) {
-                return autor;
-            }
+    public Optional<Autor> buscarAutor(String nome) {
+        Optional<Autor> autorEncontrado = autores.stream()
+                .filter(autor -> autor.getNome().equals(nome))
+                .findFirst();
+    
+        if (autorEncontrado.isPresent()) {
+            return autorEncontrado;
+        } else {
+            System.out.println("Autor não encontrado: " + nome);
+            return Optional.empty();
         }
-        System.out.println("Autor não encontrado: " + nome);
-        return null;
     }
+    
 
     public void listarAutores() {
         if (autores.isEmpty()) {
             System.out.println("Nenhum autor disponível.");
         } else {
             for (Autor autor : autores) {
-                System.out.println(autor.getNome());
+                System.out.println("Autor encontrado: " + autor.getNome());
             }
         }
     }

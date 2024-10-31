@@ -1,69 +1,68 @@
 package main.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
- //   private String nome;
     private String senhaAcesso;
-    private List<Autor> autores;
-    private List<Livro> livros;
+    private final List<Autor> autores;
+    private final List<Livro> livros;
 
-    public Administrador(String nome, String senhaAcesso ) {
-        super(nome ,senhaAcesso,"VIP");
-
+    public Administrador(String nome, String senhaAcesso) {
+        super(nome, senhaAcesso, "VIP");
+        this.senhaAcesso = senhaAcesso;
         this.autores = new ArrayList<>();
         this.livros = new ArrayList<>();
     }
 
- /*   public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-*/
     public String getSenhaAcesso() {
         return senhaAcesso;
     }
 
     public void setSenhaAcesso(String senhaAcesso) {
+        if (senhaAcesso == null || senhaAcesso.isEmpty()) {
+            throw new IllegalArgumentException("A senha de acesso não pode ser nula ou vazia.");
+        }
         this.senhaAcesso = senhaAcesso;
     }
 
     public List<Autor> getAutores() {
-        return autores;
-    }
-
-    public void setAutores(List<Autor> autores) {
-        this.autores = autores;
-    }
-
-    public List<Livro> getLivros() {
-        return livros;
-    }
-
-    public void setLivros(List<Livro> livros) {
-        this.livros = livros;
+        return Collections.unmodifiableList(autores);
     }
 
     public void adicionarAutor(String autorNome) {
+        if (autorNome == null || autorNome.isEmpty()) {
+            throw new IllegalArgumentException("Nome do autor não pode ser nulo ou vazio.");
+        }
         Autor autor = new Autor(autorNome, new ArrayList<>(), "", "");
         this.autores.add(autor);
     }
 
     public void removerAutor(String autorNome) {
+        if (autorNome == null || autorNome.isEmpty()) {
+            throw new IllegalArgumentException("Nome do autor não pode ser nulo ou vazio.");
+        }
         this.autores.removeIf(autor -> autor.getNome().equals(autorNome));
     }
 
+    public List<Livro> getLivros() {
+        return Collections.unmodifiableList(livros);
+    }
+
     public void adicionarLivro(String livroNome, boolean disponibilidade) {
-        Livro livro = new Livro(livroNome,"","", null, 0, disponibilidade, new Status(),"");
+        if (livroNome == null || livroNome.isEmpty()) {
+            throw new IllegalArgumentException("Nome do livro não pode ser nulo ou vazio.");
+        }
+        Livro livro = new Livro(livroNome, "", "", null, 0, disponibilidade, new Status(), "");
         this.livros.add(livro);
     }
 
     public void removerLivro(String livroNome) {
+        if (livroNome == null || livroNome.isEmpty()) {
+            throw new IllegalArgumentException("Nome do livro não pode ser nulo ou vazio.");
+        }
         this.livros.removeIf(livro -> livro.getNome().equals(livroNome));
     }
 }

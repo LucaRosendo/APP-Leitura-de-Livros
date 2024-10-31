@@ -1,14 +1,18 @@
 package main.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 import main.model.Autor;
 import main.model.Livro;
-import main.model.Status;
 
 public class GerenciamentoLivros {
 
     private final ArrayList<Livro> livros = new ArrayList<>();
+    private final GerenciamentoAutores gerenciamentoAutores;
+
+    public GerenciamentoLivros(GerenciamentoAutores gerenciamentoAutores) {
+        this.gerenciamentoAutores = gerenciamentoAutores; 
+    }
 
     public void adicionarLivro(Livro livro) {
         livros.add(livro);
@@ -20,23 +24,31 @@ public class GerenciamentoLivros {
         System.out.println("Livro removido: " + nome);
     }
 
-    public Livro buscarLivro(String nome) {
-        for (Livro livro : livros) {
-            if (livro.getNome().equals(nome)) {
-                return livro;
+    public Optional<Livro> buscarLivro(String nome) {
+        String nomeNormalizado = nome.trim().toLowerCase();
+        
+        for (Autor autor : gerenciamentoAutores.getAutores()) { 
+            for (String publicacao : autor.getPublicacoes()) { 
+                if (publicacao.toLowerCase().equals(nomeNormalizado)) {
+                    return livros.stream()
+                                 .filter(livro -> livro.getNome().equalsIgnoreCase(nome))
+                                 .findFirst();
+                }
             }
         }
+        
         System.out.println("Livro não encontrado: " + nome);
-        return null;
+        return Optional.empty(); 
     }
-
     public void listarLivros() {
-        if (livros.isEmpty()) {
-            System.out.println("Nenhum livro disponível.");
-        } else {
-            for (Livro livro : livros) {
-                System.out.println(livro.getNome());
-            }
-        }
+        Optional.of(livros)
+            .filter(lista -> !lista.isEmpty())
+            .ifPresentOrElse(
+                lista -> {
+                    System.out.println("Lista de Livros:");
+                    lista.forEach(livro -> System.out.println(livro.getNome()));
+                },
+                () -> System.out.println("Nenhum livro disponível.")
+            );
     }
 }

@@ -1,14 +1,15 @@
 package main.controller;
 
-import main.model.Usuario;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import main.model.Assinatura;
+import main.model.Usuario;
 
 public class GerenciamentoUsuarios {
 
     private final ArrayList<Assinatura> assinaturas = new ArrayList<>();
-    private List<Usuario> usuarios;
+    private final List<Usuario> usuarios;
 
     public GerenciamentoUsuarios() {
         this.usuarios = new ArrayList<>();
@@ -16,10 +17,19 @@ public class GerenciamentoUsuarios {
 
     public void adicionarUsuario(Usuario usuario) {
         if (usuarios.stream().anyMatch(u -> u.getNome().equals(usuario.getNome()))) {
-            throw new IllegalArgumentException("Usuário já existente: " + usuario.getNome());
+            throw new IllegalArgumentException("Usuario ja existente: " + usuario.getNome());
         }
         usuarios.add(usuario);
-        System.out.println("Usuário adicionado: " + usuario.getNome());
+        System.out.println("Usuario adicionado: " + usuario.getNome());
+    }
+
+    public void removerUsuario(String nome) {
+        boolean removed = usuarios.removeIf(u -> u.getNome().equals(nome));
+        if (removed) {
+            System.out.println("Usuario removido: " + nome);
+        } else {
+            System.out.println("Usuario nao encontrado: " + nome);
+        }
     }
 
     public void adicionarAssinatura(Assinatura assinatura) {
@@ -32,23 +42,27 @@ public class GerenciamentoUsuarios {
         System.out.println("Assinatura removida: " + nome);
     }
 
-    public Assinatura buscarAssinatura(String nome) {
+    public Optional<Assinatura> buscarAssinatura(String nome) {
         for (Assinatura assinatura : assinaturas) {
             if (assinatura.getTitular().getNome().equals(nome)) {
-                return assinatura;
+                return Optional.of(assinatura); 
             }
         }
         System.out.println("Assinatura não encontrada: " + nome);
-        return null;
+        return Optional.empty(); 
     }
 
     public void listarAssinaturas() {
-        if (assinaturas.isEmpty()) {
-            System.out.println("Nenhuma assinatura disponível.");
-        } else {
-            for (Assinatura assinatura : assinaturas) {
-                System.out.println(assinatura.getTitular().getNome());
-            }
-        }
+        Optional.of(assinaturas)
+            .filter(lista -> !lista.isEmpty())
+            .ifPresentOrElse(
+                lista -> {
+                    System.out.println("Lista de Assinaturas:");
+                    lista.forEach(assinatura -> System.out.println(assinatura.getTitular().getNome()));
+                },
+                () -> System.out.println("Nenhuma assinatura disponível.")
+            );
     }
+
+    
 }
