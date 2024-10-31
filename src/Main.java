@@ -165,9 +165,8 @@ public class Main {
                                         while (!exit) {
                                                 System.out.println("=============MENU ADICIONAR=============");
                                                 System.out.println("1. Autor");
-                                                System.out.println("2. Usuario");
-                                                System.out.println("3. Livro");
-                                                System.out.println("4. Voltar");
+                                                System.out.println("2. Livro");
+                                                System.out.println("3. Voltar");
                                                 System.out.println("========================================");
                                                 System.out.print("Escolha uma opcao: \n");
                                                 int addOption = scanner.nextInt();
@@ -185,9 +184,8 @@ public class Main {
                                 case 2:
                                         System.out.println("=============MENU ATUALIZAR=============");
                                         System.out.println("1. Autor");
-                                        System.out.println("2. Usuario");
-                                        System.out.println("3. Livro");
-                                        System.out.println("4. Voltar");
+                                        System.out.println("2. Livro");
+                                        System.out.println("3. Voltar");
                                         System.out.println("========================================");
                                         System.out.print("Escolha uma opcao: \n");
                                         int updateOption = scanner.nextInt();
@@ -195,7 +193,7 @@ public class Main {
                                         // Implementar lógica para atualizar Autor, Usuario ou Livro
                                         break;
                                 case 3:
-                                        System.out.println("=============MENU REMOVER=============");
+                                        System.out.println("=============MENU REMOVER===============");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
@@ -228,7 +226,7 @@ public class Main {
                                         }
                                         break;
                                 case 4:
-                                        System.out.println("=============MENU LISTAR=============");
+                                        System.out.println("=============MENU LISTAR================");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
@@ -255,7 +253,7 @@ public class Main {
                                         }
                                         break;
                                 case 5:
-                                        System.out.println("=============MENU BUSCAR=============");
+                                        System.out.println("=============MENU BUSCAR================");
                                         System.out.println("1. Autor");
                                         System.out.println("2. Usuario");
                                         System.out.println("3. Livro");
@@ -311,7 +309,7 @@ public class Main {
                         scanner.nextLine(); // clear the buffer
 
                         switch (userOption) {
-                                case 1 -> {
+                                case 1: {
                                         System.out.println("\nBiblioteca:");
                                         for (int i = 0; i < livros.size(); i++) {
                                                 System.out.println((i + 1) + ". " + livros.get(i).getNome());
@@ -321,13 +319,13 @@ public class Main {
                                                 }
                                         }
                                 }
-                                case 2 -> {
+                                case 2: {
                                         System.out.println("Configuraoes do Perfil:");
                                         System.out.println("Nome: " + user.getNome());
                                         System.out.println("Tipo de Assinatura: " + user.getTipoAssinatura());
                                 }
-                                case 3 -> exit = true;
-                                default -> System.out.println("Opcao invalida. Tente novamente.");
+                                case 3: exit = true;
+                                default: System.out.println("Opcao invalida. Tente novamente.");
                         }
                 }
         }
